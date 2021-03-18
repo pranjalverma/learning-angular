@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { State } from 'src/app/reducers';
 
@@ -15,7 +16,7 @@ export class AuthGuardService implements CanActivate {
     private router: Router
   ) { }
 
-  canActivate(): boolean {
+  canActivate(): Observable<boolean> {
     this.storeService
       .subscribe(state => {
         this.user = state.app.user;
@@ -23,9 +24,9 @@ export class AuthGuardService implements CanActivate {
 
     if (this.user === undefined) {
       this.router.navigate(['signup']);
-      return false;
+      return of(false);
     }
 
-    return true;
+    return of(true);
   }
 }

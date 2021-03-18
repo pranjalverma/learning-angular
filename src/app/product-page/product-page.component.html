@@ -1,0 +1,20 @@
+<div *ngIf="product$ | async" class="container py-4">
+    <div class="row">
+        <div class="col-5">
+            <img
+                class="img-thumbnail"
+                src="{{ (product$ | async)?.image }}"
+                alt="{{ (product$ | async)?.title }}"
+            >
+        </div>
+        <div class="col-7">
+            <h1 class="display-4">{{ (product$ | async)?.title }}</h1>
+            <mark class="display-5 text-muted">{{ (product$ | async)?.category }}</mark>
+            <h1 class="display-5 py-2">${{ (product$ | async)?.price }}</h1>
+
+            <div class="continer py-4">
+                {{ (product$ | async)?.description }}
+            </div>
+        </div>
+    </div>
+</div>

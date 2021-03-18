@@ -1,0 +1,85 @@
+<form [formGroup]='userForm' autocomplete="off" (ngSubmit)='onSubmit()'>
+    <div class='form-group'>
+        <label for='firstname'>First Name</label>
+        <input 
+            formControlName='firstname'
+            id='firstname' 
+            type='text' 
+            class='form-control'>
+        <div *ngIf='firstname && firstname.touched && firstname.invalid' class="alert alert-danger">
+            <ul>
+                <li>cannot be empty</li>
+            </ul>
+        </div>
+    </div>
+    <div class='form-group'>
+        <label for='lastname'>Last Name</label>
+        <input 
+            formControlName='lastname'
+            id='lastname' 
+            type='text' 
+            class='form-control'>
+    </div>
+    <div class='form-group'>
+        <label for='email'>Email Address</label>
+        <input 
+            formControlName='email'
+            id='email' 
+            type='email' 
+            class='form-control'>
+        <div *ngIf='email && email.touched && email.invalid' class="alert alert-danger">
+            <ul>
+                <li>invalid or empty email address</li>
+            </ul>
+        </div>
+    </div>
+    <div class='form-group'>
+        <label for='phone'>Phone Number</label>
+        <input 
+            formControlName='phone'
+            id='phone' 
+            type='text' 
+            class='form-control'>
+        <div *ngIf='phone && phone.touched && phone.errors' class="alert alert-danger">
+            <ul *ngFor='let error of phone.errors | keyvalue'>
+                <li *ngIf='error.key === "required"'>cannot be empty</li>
+                <li *ngIf='error.key !== "required"'>{{ error.value }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class='form-group'>
+        <label for='password'>Password</label>
+        <input 
+            formControlName='password'
+            autocomplete="off"
+            id='password' 
+            type='password' 
+            class='form-control'>
+        <div *ngIf='password && password.touched && password.errors' class="alert alert-danger">
+            <ul *ngFor='let error of password.errors | keyvalue'>
+                <li *ngIf='error.key === "required"'>cannot be empty</li>
+                <li *ngIf='error.key !== "required"'>{{ error.value }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class='form-group'>
+        <label for='condirm-password'>Confirm Password</label>
+        <input 
+            formControlName='confirmPassword'
+            id='confirm-password' 
+            type='password' 
+            class='form-control'>
+        <div *ngIf='confirmPassword && confirmPassword.touched && confirmPassword.errors' class="alert alert-danger">
+            <ul *ngFor='let error of confirmPassword.errors | keyvalue'>
+                <li *ngIf='error.key === "required"'>cannot be empty</li>
+                <li *ngIf='error.key !== "required"'>{{ error.value }}</li>
+            </ul>
+        </div>
+    </div>
+    <button
+        class='btn btn-primary'
+        [ngClass]='{"disabled": this.userForm.invalid}'
+        type='submit'>
+        Sign Up
+    </button>
+</form>

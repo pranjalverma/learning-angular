@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" (click)='getRandomProduct()' routerLink="{{redirectProductLink}}">OMS</a>
+    </div>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a *ngIf='user === undefined' class="nav-link" routerLink="/signup">Sign Up</a>
+        <a *ngIf='user !== undefined' class="nav-link">{{ user }}</a>
+      </li>
+    </ul>
+</nav>
